@@ -3,45 +3,61 @@ import { Container, Accordion } from "react-bootstrap";
 
 const userData = [
   {
-    id: 1,
-    name: "John Doe",
-    email: "john@example.com",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    userID: "101",
+    firstName: "Joe",
+    lastName: "Schmoe",
+    email: "joe.schmoe@gmail.com",
+    ticketID: "101001",
+    issueText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    ticketStatus: "new",
   },
   {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane@example.com",
-    description:
+    userID: "102",
+    firstName: "Adam",
+    lastName: "Smasher",
+    email: "asmash@aol.com",
+    ticketID: "102001",
+    issueText:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    ticketStatus: "resolved",
+  },
+  {
+    userID: "103",
+    firstName: "Ursula",
+    lastName: "Le Guin",
+    email: "leguin@yahoo.com",
+    ticketID: "103001",
+    issueText:
       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    id: 3,
-    name: "Bob Johnson",
-    email: "bob@example.com",
-    description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    ticketStatus: "in progress",
   },
 ];
 
 const AdminScreen = () => {
-  const [activeUser, setActiveUser] = useState(null);
-
-  const handleUserClick = (userId) => {
-    setActiveUser(userId === activeUser ? null : userId);
-  };
-
   return (
     <Container>
       <Accordion className="mt-3" defaultActiveKey="0">
         {userData &&
           userData.map((user, index) => {
+            const {
+              ticketID,
+              ticketStatus,
+              firstName,
+              lastName,
+              email,
+              issueText,
+            } = user;
             return (
               <Accordion.Item eventKey={index.toString()}>
-                <Accordion.Header>{user.name}</Accordion.Header>
+                <Accordion.Header>
+                  Ticket ID: {ticketID} Status: {ticketStatus}
+                </Accordion.Header>
                 <Accordion.Body>
-                  <div>Email: {user.email}</div>
-                  <div>Description: {user.description}</div>
+                  <div>
+                    {firstName} {lastName}
+                  </div>
+                  <div>Email: {email}</div>
+                  <div>Description: {issueText}</div>
                 </Accordion.Body>
               </Accordion.Item>
             );
